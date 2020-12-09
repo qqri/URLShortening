@@ -1,0 +1,6 @@
+mustache:
+    suffix: .html
+    prefix: classpath:/static/\
+  
+spring.jpa.show_sql=true
+spring.h2.console.enabled=true   
