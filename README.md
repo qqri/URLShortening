@@ -1,1 +1,1 @@
-# smgProjeect1
+# smgProject1

@@ -1,34 +1,44 @@
-buildscript {
-    ext {
-        springBootVersion = '2.1.2.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
+plugins {
+    id 'java'
+    id 'idea'
+    id 'war'
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id 'java-library'
+    id 'application'
 }
 
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-group 'com.krkimb.urlproject'
+group 'com.qqri.urlshortproject'
 version '1.0-SNAPSHOT'
+
 sourceCompatibility = 1.8
+
+
+bootJar{
+    archivesBaseName = 'urlshortproject'
+    archiveName = 'urlshortproject.jar'
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.projectlombok:lombok')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    compile('org.springframework.boot:spring-boot-starter-mustache')
+
+    implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-jdbc')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-test')
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
+    compile('javax.servlet:jstl:1.2')
+
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
+    runtimeOnly 'com.h2database:h2'
+
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+
+    compileOnly 'org.projectlombok:lombok:1.18.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
 }
